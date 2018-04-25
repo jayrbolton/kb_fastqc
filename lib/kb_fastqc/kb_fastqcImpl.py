@@ -4,7 +4,7 @@ import os
 import uuid
 import subprocess
 import shutil
-from KBaseReport.KBaseReportClient import KBaseReport
+from KBaseReportPy.KBaseReportPyClient import KBaseReportPy
 from biokbase.workspace.client import Workspace as workspaceService
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
 from DataFileUtil.DataFileUtilClient import DataFileUtil
@@ -101,7 +101,7 @@ class kb_fastqc:
             'workspace_name': ws,
             'report_object_name': 'kb_fastqc_report_' + uuid_string
         }
-        kbase_report_client = KBaseReport(self.callback_url, token=token)
+        kbase_report_client = KBaseReportPy(self.callback_url, token=token)
         output = kbase_report_client.create_extended_report(report_params)
         return output
     #END_CLASS_HEADER
