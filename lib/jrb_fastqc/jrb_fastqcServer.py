@@ -16,7 +16,7 @@ from biokbase import log
 import requests as _requests
 import random as _random
 import os
-from kb_fastqc.authclient import KBaseAuth as _KBaseAuth
+from jrb_fastqc.authclient import KBaseAuth as _KBaseAuth
 
 DEPLOY = 'KB_DEPLOYMENT_CONFIG'
 SERVICE = 'KB_SERVICE_NAME'
@@ -39,14 +39,14 @@ def get_config():
     retconfig = {}
     config = ConfigParser()
     config.read(get_config_file())
-    for nameval in config.items(get_service_name() or 'kb_fastqc'):
+    for nameval in config.items(get_service_name() or 'jrb_fastqc'):
         retconfig[nameval[0]] = nameval[1]
     return retconfig
 
 config = get_config()
 
-from kb_fastqc.kb_fastqcImpl import kb_fastqc  # noqa @IgnorePep8
-impl_kb_fastqc = kb_fastqc(config)
+from jrb_fastqc.jrb_fastqcImpl import jrb_fastqc  # noqa @IgnorePep8
+impl_jrb_fastqc = jrb_fastqc(config)
 
 
 class JSONObjectEncoder(json.JSONEncoder):
@@ -322,7 +322,7 @@ class Application(object):
                                    context['method'], context['call_id'])
 
     def __init__(self):
-        submod = get_service_name() or 'kb_fastqc'
+        submod = get_service_name() or 'jrb_fastqc'
         self.userlog = log.log(
             submod, ip_address=True, authuser=True, module=True, method=True,
             call_id=True, changecallback=self.logcallback,
@@ -333,12 +333,12 @@ class Application(object):
         self.serverlog.set_log_level(6)
         self.rpc_service = JSONRPCServiceCustom()
         self.method_authentication = dict()
-        self.rpc_service.add(impl_kb_fastqc.runFastQC,
-                             name='kb_fastqc.runFastQC',
+        self.rpc_service.add(impl_jrb_fastqc.runFastQC,
+                             name='jrb_fastqc.runFastQC',
                              types=[dict])
-        self.method_authentication['kb_fastqc.runFastQC'] = 'required'  # noqa
-        self.rpc_service.add(impl_kb_fastqc.status,
-                             name='kb_fastqc.status',
+        self.method_authentication['jrb_fastqc.runFastQC'] = 'required'  # noqa
+        self.rpc_service.add(impl_jrb_fastqc.status,
+                             name='jrb_fastqc.status',
                              types=[dict])
         authurl = config.get(AUTH) if config else None
         self.auth_client = _KBaseAuth(authurl)
@@ -393,7 +393,7 @@ class Application(object):
                             err = JSONServerError()
                             err.data = (
                                 'Authentication required for ' +
-                                'kb_fastqc ' +
+                                'jrb_fastqc ' +
                                 'but no authentication header was passed')
                             raise err
                         elif token is None and auth_req == 'optional':

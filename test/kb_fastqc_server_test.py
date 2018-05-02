@@ -16,11 +16,11 @@ except:
 from pprint import pprint
 
 from biokbase.workspace.client import Workspace as workspaceService
-from kb_fastqc.kb_fastqcImpl import kb_fastqc
-from kb_fastqc.kb_fastqcServer import MethodContext
+from jrb_fastqc.jrb_fastqcImpl import jrb_fastqc
+from jrb_fastqc.jrb_fastqcServer import MethodContext
 
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
-from kb_fastqc.authclient import KBaseAuth as _KBaseAuth
+from jrb_fastqc.authclient import KBaseAuth as _KBaseAuth
 
 class kb_fastqcTest(unittest.TestCase):
 
@@ -31,7 +31,7 @@ class kb_fastqcTest(unittest.TestCase):
         cls.cfg = {}
         config = ConfigParser()
         config.read(config_file)
-        for nameval in config.items('kb_fastqc'):
+        for nameval in config.items('jrb_fastqc'):
             cls.cfg[nameval[0]] = nameval[1]
         authServiceUrl = cls.cfg.get('auth-service-url',
                 "https://kbase.us/services/authorization/Sessions/Login")
@@ -43,14 +43,14 @@ class kb_fastqcTest(unittest.TestCase):
         cls.ctx.update({'token': token,
                         'user_id': user_id,
                         'provenance': [
-                            {'service': 'kb_fastqc',
+                            {'service': 'jrb_fastqc',
                              'method': 'please_never_use_it_in_production',
                              'method_params': []
                              }],
                         'authenticated': 1})
         cls.wsURL = cls.cfg['workspace-url']
         cls.wsClient = workspaceService(cls.wsURL, token=token)
-        cls.serviceImpl = kb_fastqc(cls.cfg)
+        cls.serviceImpl = jrb_fastqc(cls.cfg)
 
         #retrieve and setup test files
         test_fq_filename = "test_1.fastq.gz"
@@ -79,7 +79,7 @@ class kb_fastqcTest(unittest.TestCase):
         if hasattr(self.__class__, 'wsName'):
             return self.__class__.wsName
         suffix = int(time.time() * 1000)
-        wsName = "test_kb_fastqc_" + str(suffix)
+        wsName = "test_jrb_fastqc_" + str(suffix)
         self.getWsClient().create_workspace({'workspace': wsName})
         self.__class__.wsName = wsName
         return wsName

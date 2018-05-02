@@ -1,7 +1,7 @@
-SERVICE = kb_fastqc
-SERVICE_CAPS = kb_fastqc
-SPEC_FILE = kb_fastqc.spec
-URL = https://kbase.us/services/kb_fastqc
+SERVICE = jrb_fastqc
+SERVICE_CAPS = jrb_fastqc
+SPEC_FILE = jrb_fastqc.spec
+URL = https://kbase.us/services/jrb_fastqc
 DIR = $(shell pwd)
 LIB_DIR = lib
 SCRIPTS_DIR = scripts

@@ -11,10 +11,10 @@ from DataFileUtil.DataFileUtilClient import DataFileUtil
 #END_HEADER
 
 
-class kb_fastqc:
+class jrb_fastqc:
     '''
     Module Name:
-    kb_fastqc
+    jrb_fastqc
 
     Module Description:
     A KBase module: kb_fastqc
@@ -26,9 +26,9 @@ class kb_fastqc:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     ######################################### noqa
-    VERSION = "1.0.4"
-    GIT_URL = "https://github.com/Tianhao-Gu/kb_fastqc.git"
-    GIT_COMMIT_HASH = "3f552db07e04f4b01eec0b38ec49546a2335d87e"
+    VERSION = ""
+    GIT_URL = ""
+    GIT_COMMIT_HASH = ""
 
     #BEGIN_CLASS_HEADER
 

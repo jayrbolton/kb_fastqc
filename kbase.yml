@@ -1,5 +1,5 @@
 module-name:
-    kb_fastqc
+    jrb_fastqc
 
 module-description:
     A module for checking read quality using FastQC (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/)

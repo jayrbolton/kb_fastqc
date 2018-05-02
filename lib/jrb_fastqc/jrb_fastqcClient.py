@@ -17,7 +17,7 @@ except:
     from baseclient import BaseClient as _BaseClient  # @Reimport
 
 
-class kb_fastqc(object):
+class jrb_fastqc(object):
 
     def __init__(
             self, url=None, timeout=30 * 60, user_id=None,
@@ -42,9 +42,9 @@ class kb_fastqc(object):
            "report_name" of String, parameter "report_ref" of String
         """
         return self._client.call_method(
-            'kb_fastqc.runFastQC',
+            'jrb_fastqc.runFastQC',
             [input_params], self._service_ver, context)
 
     def status(self, context=None):
-        return self._client.call_method('kb_fastqc.status',
+        return self._client.call_method('jrb_fastqc.status',
                                         [], self._service_ver, context)
