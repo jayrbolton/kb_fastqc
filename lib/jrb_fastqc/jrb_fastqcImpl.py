@@ -4,7 +4,7 @@ import os
 import uuid
 import subprocess
 import shutil
-from KBaseReport.KBaseReportClient import KBaseReport
+from KBaseReportPy.KBaseReportPyClient import KBaseReportPy as KBaseReport
 from biokbase.workspace.client import Workspace as workspaceService
 from ReadsUtils.ReadsUtilsClient import ReadsUtils
 from DataFileUtil.DataFileUtilClient import DataFileUtil
